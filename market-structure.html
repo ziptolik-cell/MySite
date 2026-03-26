@@ -1,0 +1,1947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MarketMind — Market Structure Test</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #000000;
+    --dark-card: #1f2123;
+    --light-card: #f0f0f0;
+    --accent: #5846fb;
+    --white: #ffffff;
+    --gray-bg: #f5f5f5;
+    --gray-text: #8a8a8a;
+    --radius-pill: 100px;
+    --radius-card: 40px;
+    --radius-section: 72px;
+    --pad: 104px;
+    --max: 1440px;
+  }
+
+  body {
+    font-family: 'Space Grotesk', sans-serif;
+    background: #ffffff;
+    color: var(--black);
+    overflow-x: hidden;
+  }
+
+  .container {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 var(--pad);
+  }
+
+  /* ───────── NAVBAR ───────── */
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 40px 0 0;
+    position: relative;
+    z-index: 10;
+  }
+
+  .logo {
+    font-size: 30px;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: -0.5px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 48px;
+    list-style: none;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    padding: 18px 40px;
+    border-radius: var(--radius-pill);
+    backdrop-filter: blur(10px);
+  }
+
+  .nav-links a {
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 400;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--white); }
+
+  .nav-cta {
+    background: var(--accent);
+    color: var(--white);
+    font-size: 16px;
+    font-weight: 600;
+    padding: 14px 28px;
+    border-radius: var(--radius-pill);
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+
+  .nav-cta:hover { opacity: 0.85; }
+
+  /* ───────── HERO ───────── */
+  #hero {
+    background: var(--black);
+    border-radius: 0 0 var(--radius-section) var(--radius-section);
+    padding-bottom: 100px;
+  }
+
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    padding-top: 100px;
+  }
+
+  .hero-left {}
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(88,70,251,0.15);
+    border: 1px solid rgba(88,70,251,0.35);
+    color: var(--accent);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 8px 18px;
+    border-radius: var(--radius-pill);
+    margin-bottom: 40px;
+  }
+
+  .hero-tag span { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
+
+  h1.hero-headline {
+    font-size: 80px;
+    font-weight: 500;
+    color: var(--white);
+    line-height: 1.05;
+    letter-spacing: -2px;
+    margin-bottom: 32px;
+  }
+
+  .hero-sub {
+    font-size: 22px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.6;
+    margin-bottom: 48px;
+    max-width: 520px;
+  }
+
+  .hero-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 56px;
+  }
+
+  .hero-bullets li {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    color: var(--white);
+    font-size: 18px;
+    font-weight: 400;
+  }
+
+  .bullet-check {
+    width: 26px;
+    height: 26px;
+    background: rgba(88,70,251,0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .bullet-check svg { width: 13px; height: 13px; }
+
+  .hero-ctas {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--accent);
+    color: var(--white);
+    font-size: 18px;
+    font-weight: 600;
+    height: 60px;
+    padding: 0 36px;
+    border-radius: var(--radius-pill);
+    text-decoration: none;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+
+  .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+
+  .btn-secondary {
+    color: rgba(255,255,255,0.75);
+    font-size: 18px;
+    font-weight: 400;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+
+  .btn-secondary:hover { color: var(--white); }
+
+  /* Quiz card mockup */
+  .hero-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .quiz-card {
+    background: var(--dark-card);
+    border-radius: var(--radius-card);
+    padding: 40px;
+    width: 100%;
+    max-width: 440px;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .quiz-card-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 24px;
+  }
+
+  .quiz-card-q {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--white);
+    line-height: 1.5;
+    margin-bottom: 28px;
+  }
+
+  .quiz-options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+
+  .quiz-opt {
+    padding: 14px 20px;
+    border-radius: 16px;
+    font-size: 16px;
+    color: rgba(255,255,255,0.7);
+    border: 1px solid rgba(255,255,255,0.1);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .quiz-opt.selected {
+    background: rgba(88,70,251,0.2);
+    border-color: var(--accent);
+    color: var(--white);
+  }
+
+  .quiz-opt:hover:not(.selected) {
+    border-color: rgba(255,255,255,0.25);
+    color: var(--white);
+  }
+
+  .quiz-progress {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .quiz-bar {
+    flex: 1;
+    height: 4px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .quiz-bar-fill {
+    width: 33%;
+    height: 100%;
+    background: var(--accent);
+    border-radius: 10px;
+  }
+
+  .quiz-step {
+    font-size: 14px;
+    color: rgba(255,255,255,0.4);
+  }
+
+  /* ───────── SECTION BASE ───────── */
+  section {
+    padding: 120px 0;
+  }
+
+  .section-label {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 24px;
+  }
+
+  h2.section-headline {
+    font-size: 80px;
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -2px;
+    margin-bottom: 28px;
+  }
+
+  h2.section-headline.white { color: var(--white); }
+  h2.section-headline.black { color: var(--black); }
+  h2.section-headline.centered { text-align: center; }
+
+  .section-sub {
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--gray-text);
+    line-height: 1.6;
+    max-width: 620px;
+    margin-bottom: 60px;
+  }
+
+  /* ───────── QUICK CONTEXT ───────── */
+  #quick-context { background: var(--white); }
+
+  .video-placeholder {
+    background: var(--light-card);
+    border-radius: var(--radius-card);
+    height: 520px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .video-placeholder::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(88,70,251,0.04) 0%, transparent 60%);
+  }
+
+  .play-btn {
+    width: 88px;
+    height: 88px;
+    background: var(--accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 0 0 0 rgba(88,70,251,0.4);
+    position: relative;
+    z-index: 1;
+  }
+
+  .play-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 20px rgba(88,70,251,0.1);
+  }
+
+  .play-btn svg { margin-left: 5px; }
+
+  .video-label {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--black);
+    position: relative;
+    z-index: 1;
+  }
+
+  .video-duration {
+    font-size: 14px;
+    color: var(--gray-text);
+    position: relative;
+    z-index: 1;
+  }
+
+  /* chart lines behind video */
+  .chart-bg {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    opacity: 0.06;
+  }
+
+  /* ───────── CORE INSIGHT ───────── */
+  #core-insight { background: var(--gray-bg); }
+
+  .insight-header { text-align: center; margin-bottom: 64px; }
+
+  .comparison-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 60px;
+  }
+
+  .comp-card {
+    border-radius: var(--radius-card);
+    padding: 52px;
+  }
+
+  .comp-card.dark {
+    background: var(--dark-card);
+    color: var(--white);
+  }
+
+  .comp-card.accent {
+    background: var(--accent);
+    color: var(--white);
+  }
+
+  .comp-card-label {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    opacity: 0.7;
+  }
+
+  .comp-card.dark .comp-card-label { color: var(--accent); opacity: 1; }
+  .comp-card.accent .comp-card-label { color: rgba(255,255,255,0.7); }
+
+  .comp-card-title {
+    font-size: 36px;
+    font-weight: 500;
+    margin-bottom: 36px;
+    line-height: 1.2;
+  }
+
+  .comp-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .comp-list li {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.4;
+  }
+
+  .icon-x {
+    width: 28px;
+    height: 28px;
+    background: rgba(255,80,80,0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .icon-check-sm {
+    width: 28px;
+    height: 28px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .insight-micro {
+    text-align: center;
+    font-size: 22px;
+    color: var(--gray-text);
+    font-weight: 400;
+  }
+
+  /* ───────── CTA BLOCK ───────── */
+  #cta-block {
+    padding: 0 var(--pad);
+    margin: 0 auto;
+    max-width: var(--max);
+  }
+
+  .cta-inner {
+    background: var(--black);
+    border-radius: var(--radius-section);
+    padding: 100px var(--pad);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .cta-support {
+    font-size: 22px;
+    color: rgba(255,255,255,0.6);
+    font-weight: 400;
+  }
+
+  /* ───────── COMMUNITY ───────── */
+  #community { background: var(--white); }
+
+  .community-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 60px;
+  }
+
+  .community-card {
+    background: var(--light-card);
+    border-radius: var(--radius-pill);
+    padding: 44px 52px;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    transition: transform 0.2s;
+    cursor: pointer;
+  }
+
+  .community-card:hover { transform: translateY(-3px); }
+
+  .community-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .community-icon.tg { background: #229ED9; }
+  .community-icon.dc { background: #5865F2; }
+
+  .community-card-title {
+    font-size: 26px;
+    font-weight: 500;
+    color: var(--black);
+    margin-bottom: 6px;
+  }
+
+  .community-card-sub {
+    font-size: 16px;
+    color: var(--gray-text);
+    font-weight: 400;
+  }
+
+  /* ───────── ALT OFFER ───────── */
+  #alt-offer {
+    padding: 0 var(--pad);
+    margin: 80px auto;
+    max-width: var(--max);
+  }
+
+  .alt-inner {
+    background: var(--black);
+    border-radius: var(--radius-section);
+    padding: 100px var(--pad);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .alt-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 52px;
+  }
+
+  .alt-bullets li {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 20px;
+    color: rgba(255,255,255,0.85);
+    font-weight: 400;
+  }
+
+  .alt-bullets .bullet-check {
+    background: rgba(88,70,251,0.2);
+  }
+
+  .alt-right {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .alt-stat {
+    background: var(--dark-card);
+    border-radius: 24px;
+    padding: 28px 36px;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .alt-stat-num {
+    font-size: 48px;
+    font-weight: 500;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .alt-stat-label {
+    font-size: 16px;
+    color: rgba(255,255,255,0.5);
+    font-weight: 400;
+  }
+
+  /* ───────── EDUCATIONAL VISUAL ───────── */
+  #edu-visual { background: var(--white); }
+
+  .chart-container {
+    background: var(--light-card);
+    border-radius: var(--radius-card);
+    padding: 52px;
+    margin: 60px 0 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .chart-zones {
+    position: relative;
+    height: 300px;
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    padding-top: 40px;
+  }
+
+  /* Zone backgrounds */
+  .zone-accum {
+    position: absolute;
+    left: 0; top: 40px; bottom: 0;
+    width: 38%;
+    background: rgba(255,193,50,0.08);
+    border-radius: 8px;
+  }
+
+  .zone-sweep {
+    position: absolute;
+    left: 38%; top: 40px; bottom: 0;
+    width: 14%;
+    background: rgba(255,80,80,0.08);
+    border-radius: 8px;
+  }
+
+  .zone-expand {
+    position: absolute;
+    left: 52%; top: 40px; bottom: 0;
+    right: 0;
+    background: rgba(88,251,150,0.08);
+    border-radius: 8px;
+  }
+
+  .zone-label {
+    position: absolute;
+    top: 44px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 20px;
+  }
+
+  .zone-label.accum { left: 16px; color: #c49a00; background: rgba(255,193,50,0.15); }
+  .zone-label.sweep { left: 40%; color: #ff5050; background: rgba(255,80,80,0.15); }
+  .zone-label.expand { left: 54%; color: #3cb87a; background: rgba(88,251,150,0.15); }
+
+  .candles {
+    position: absolute;
+    left: 0; right: 0; bottom: 0; top: 40px;
+    display: flex;
+    align-items: flex-end;
+    gap: 5px;
+    padding: 0 12px;
+  }
+
+  .candle-wrap {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100%;
+  }
+
+  .candle-wick {
+    width: 1.5px;
+    background: rgba(0,0,0,0.25);
+  }
+
+  .candle-body {
+    width: 70%;
+    border-radius: 3px;
+    min-height: 8px;
+  }
+
+  .candle-body.bull { background: #3cb87a; }
+  .candle-body.bear { background: #ff5050; }
+
+  .vol-bars {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    display: flex;
+    align-items: flex-end;
+    gap: 5px;
+    padding: 0 12px;
+    height: 50px;
+    opacity: 0.4;
+  }
+
+  .vol-bar { flex: 1; background: var(--accent); border-radius: 2px 2px 0 0; min-height: 4px; }
+
+  .chart-line {
+    position: absolute;
+    left: 0; right: 0;
+    height: 2px;
+    background: rgba(88,70,251,0.3);
+  }
+
+  /* Arrow up for expansion */
+  .expand-arrow {
+    position: absolute;
+    right: 8%;
+    bottom: 20%;
+  }
+
+  .edu-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 52px;
+  }
+
+  .edu-step {
+    background: var(--dark-card);
+    border-radius: var(--radius-pill);
+    padding: 24px 28px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .step-num {
+    width: 36px;
+    height: 36px;
+    background: var(--accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--white);
+    flex-shrink: 0;
+  }
+
+  .step-text {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--white);
+    line-height: 1.35;
+  }
+
+  /* ───────── AUTHOR ───────── */
+  #author { background: var(--gray-bg); }
+
+  .author-grid {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .author-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+  }
+
+  .author-photo {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #c8c8c8, #e8e8e8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 4px solid rgba(88,70,251,0.3);
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .author-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  .author-photo svg { opacity: 0.4; }
+
+  .author-badge {
+    background: var(--accent);
+    color: var(--white);
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 22px;
+    border-radius: var(--radius-pill);
+    text-align: center;
+  }
+
+  .author-years {
+    font-size: 13px;
+    color: rgba(255,255,255,0.7);
+    font-weight: 400;
+  }
+
+  h3.author-title {
+    font-size: 52px;
+    font-weight: 500;
+    color: var(--black);
+    line-height: 1.1;
+    letter-spacing: -1.5px;
+    margin-bottom: 28px;
+  }
+
+  .author-body {
+    font-size: 22px;
+    color: var(--gray-text);
+    line-height: 1.65;
+    margin-bottom: 36px;
+    max-width: 560px;
+  }
+
+  .author-quote {
+    font-size: 22px;
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 400;
+    line-height: 1.5;
+    padding-left: 24px;
+    border-left: 3px solid var(--accent);
+  }
+
+  /* ───────── INDUSTRY PROOF ───────── */
+  #industry { background: var(--white); }
+
+  .proof-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin: 60px 0 40px;
+  }
+
+  .proof-card {
+    background: var(--light-card);
+    border-radius: var(--radius-card);
+    aspect-ratio: 3/4;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .proof-img {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #e0e0e0, #f0f0f0);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .proof-img::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(88,70,251,0.08), transparent);
+  }
+
+  .proof-img svg { opacity: 0.2; }
+
+  .proof-label {
+    padding: 20px 24px;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--black);
+  }
+
+  .proof-micro {
+    font-size: 13px;
+    color: var(--gray-text);
+    font-weight: 400;
+    margin-top: 4px;
+  }
+
+  .industry-caption {
+    text-align: center;
+    font-size: 22px;
+    color: var(--gray-text);
+    font-weight: 400;
+  }
+
+  /* ───────── FINAL CTA ───────── */
+  #final-cta {
+    padding: 0 var(--pad) 80px;
+    max-width: var(--max);
+    margin: 0 auto;
+  }
+
+  .final-inner {
+    background: var(--black);
+    border-radius: var(--radius-section);
+    padding: 120px var(--pad);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+  }
+
+  /* ───────── FOOTER ───────── */
+  footer {
+    background: var(--black);
+    border-radius: var(--radius-section) var(--radius-section) 0 0;
+    padding: 80px 0 60px;
+    margin-top: 0;
+  }
+
+  .footer-logo {
+    font-size: 40px;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: -1px;
+    margin-bottom: 56px;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 72px;
+  }
+
+  .footer-pill {
+    border: 1px solid #3a3a3a;
+    height: 60px;
+    padding: 0 32px;
+    border-radius: var(--radius-pill);
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--white);
+    font-size: 20px;
+    font-weight: 400;
+    text-decoration: none;
+    transition: border-color 0.2s;
+  }
+
+  .footer-pill:hover { border-color: rgba(255,255,255,0.4); }
+
+  .footer-divider {
+    height: 1px;
+    background: rgba(255,255,255,0.08);
+    margin-bottom: 40px;
+  }
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+
+  .footer-disclaimer {
+    font-size: 14px;
+    color: rgba(255,255,255,0.35);
+    line-height: 1.7;
+    max-width: 600px;
+  }
+
+  .footer-copyright {
+    font-size: 14px;
+    color: rgba(255,255,255,0.25);
+    white-space: nowrap;
+  }
+
+  /* ───────── FOOTER LEGAL BLOCK ───────── */
+  .footer-legal {
+    margin-bottom: 40px;
+  }
+
+  .footer-disclosures {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 24px;
+    font-size: 14px;
+    line-height: 1.65;
+  }
+
+  .footer-disclosures p {
+    color: rgba(255,255,255,0.5);
+  }
+
+  .footer-disclosures strong {
+    color: #fff;
+    font-weight: 600;
+  }
+
+  .accordion-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .accordion-item {
+    background: rgba(255,255,255,0.06);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .accordion-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 8px 10px 12px;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  .accordion-header-text {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 14px;
+    line-height: 1;
+  }
+
+  .accordion-title {
+    font-weight: 600;
+    color: #fff;
+  }
+
+  .accordion-date {
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+    font-weight: 400;
+    white-space: nowrap;
+  }
+
+  .accordion-chevron {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.25s ease;
+  }
+
+  .accordion-chevron svg {
+    width: 10px;
+    height: 10px;
+  }
+
+  .accordion-item.open .accordion-chevron {
+    transform: rotate(180deg);
+  }
+
+  .accordion-body {
+    display: none;
+    padding: 0 12px 12px;
+    font-size: 14px;
+    line-height: 1.65;
+  }
+
+  .accordion-item.open .accordion-body {
+    display: block;
+  }
+
+  .accordion-body p {
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 6px;
+  }
+
+  .accordion-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  .accordion-body strong {
+    color: #fff;
+    font-weight: 600;
+  }
+
+  .accordion-body .section-title {
+    color: #fff;
+    font-weight: 600;
+    margin-top: 10px;
+    margin-bottom: 4px;
+  }
+
+  .accordion-body ul {
+    margin: 4px 0 4px 20px;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .accordion-body ul li {
+    margin-bottom: 2px;
+  }
+
+  .accordion-intro {
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 10px;
+  }
+
+  /* Inline section wrappers for full-width dark sections */
+  .section-wrap-dark {
+    padding: 120px 0;
+  }
+
+  /* Centered btn wrapper */
+  .btn-center { display: flex; justify-content: center; }
+
+  /* ───────── MOBILE RESPONSIVENESS ───────── */
+
+  @media (max-width: 1100px) {
+    :root { --pad: 56px; }
+    h1.hero-headline { font-size: 64px; }
+    h2.section-headline { font-size: 64px; }
+    .proof-cards { grid-template-columns: repeat(2, 1fr); }
+    .edu-steps { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 900px) {
+    :root { --pad: 36px; --radius-section: 56px; }
+
+    h1.hero-headline { font-size: 50px !important; letter-spacing: -1.5px; }
+    h2.section-headline { font-size: 50px !important; letter-spacing: -1.5px; }
+    h3.author-title { font-size: 40px; letter-spacing: -1px; }
+
+    .nav-links { display: none; }
+    .nav-cta { display: none; }
+
+    .hero-inner {
+      grid-template-columns: 1fr;
+      gap: 48px;
+      padding-top: 64px;
+    }
+    .hero-right { display: flex; }
+
+    .comparison-grid { grid-template-columns: 1fr; }
+
+    .community-cards { grid-template-columns: 1fr; }
+
+    .alt-inner {
+      grid-template-columns: 1fr;
+      gap: 52px;
+      padding: 72px var(--pad);
+    }
+    .alt-right { flex-direction: row; flex-wrap: wrap; gap: 16px; }
+    .alt-stat { flex: 1; min-width: 160px; }
+
+    .author-grid {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+    .author-left { flex-direction: row; justify-content: flex-start; align-items: center; }
+
+    .proof-cards { grid-template-columns: repeat(2, 1fr); }
+    .edu-steps { grid-template-columns: repeat(2, 1fr); }
+
+    .cta-inner { padding: 80px var(--pad); }
+    .final-inner { padding: 80px var(--pad); }
+
+    .footer-bottom { flex-direction: column; gap: 20px; }
+    .footer-copyright { white-space: normal; }
+  }
+
+  @media (max-width: 640px) {
+    :root {
+      --pad: 20px;
+      --radius-section: 36px;
+      --radius-card: 24px;
+      --radius-pill: 80px;
+    }
+
+    nav { padding: 24px 0 0; }
+    .logo { font-size: 22px; }
+
+    h1.hero-headline { font-size: 36px !important; letter-spacing: -0.5px; line-height: 1.1; }
+    h2.section-headline { font-size: 34px !important; letter-spacing: -0.5px; }
+    h3.author-title { font-size: 28px; letter-spacing: -0.5px; }
+
+    section { padding: 72px 0; }
+
+    .hero-tag { font-size: 11px; padding: 7px 14px; margin-bottom: 28px; }
+    .hero-sub { font-size: 17px; margin-bottom: 32px; }
+    .hero-bullets { margin-bottom: 40px; }
+    .hero-bullets li { font-size: 16px; }
+    .hero-ctas { flex-direction: column; align-items: flex-start; gap: 16px; }
+
+    .btn-primary { font-size: 15px !important; height: 52px !important; padding: 0 24px !important; }
+    .btn-secondary { font-size: 15px; }
+
+    .section-sub { font-size: 17px; margin-bottom: 40px; }
+    .section-label { font-size: 11px; }
+
+    .video-placeholder { height: 240px; margin-top: 32px; }
+    .play-btn { width: 64px; height: 64px; }
+    .video-label { font-size: 16px; }
+
+    .comp-card { padding: 32px 24px; }
+    .comp-card-title { font-size: 26px; }
+    .comp-list li { font-size: 17px; gap: 12px; }
+
+    .cta-inner { padding: 64px 24px; gap: 20px; }
+    .cta-support { font-size: 17px; }
+
+    .community-card { padding: 28px 24px; border-radius: 28px; gap: 20px; }
+    .community-icon { width: 52px; height: 52px; }
+    .community-card-title { font-size: 20px; }
+    .community-card-sub { font-size: 14px; }
+
+    #alt-offer { margin: 40px auto; }
+    .alt-inner { padding: 56px 24px; gap: 40px; }
+    .alt-stat { min-width: 100%; }
+    .alt-right { flex-direction: column; }
+    .alt-stat-num { font-size: 36px; }
+    .alt-bullets li { font-size: 17px; }
+
+    .chart-container { padding: 24px 16px; margin: 32px 0 32px; }
+
+    .edu-steps { grid-template-columns: 1fr; gap: 12px; margin-bottom: 36px; }
+    .edu-step { padding: 18px 20px; border-radius: 24px; }
+    .step-text { font-size: 14px; }
+
+    .author-left { flex-direction: column; align-items: center; gap: 20px; }
+    .author-photo { width: 180px; height: 180px; }
+    .author-body { font-size: 17px; }
+    .author-quote { font-size: 17px; }
+
+    .proof-cards { grid-template-columns: 1fr; }
+
+    .industry-caption { font-size: 17px; }
+    .insight-micro { font-size: 17px; }
+
+    .final-inner { padding: 72px 24px; gap: 24px; }
+
+    #final-cta { padding: 0 var(--pad) 56px; }
+
+    footer { padding: 60px 0 48px; border-radius: var(--radius-section) var(--radius-section) 0 0; }
+    .footer-logo { font-size: 26px; margin-bottom: 36px; }
+    .footer-links { gap: 10px; margin-bottom: 48px; }
+    .footer-pill { font-size: 15px; height: 48px; padding: 0 20px; }
+    .footer-disclaimer { font-size: 13px; }
+    .footer-copyright { font-size: 13px; }
+  }
+
+  @media (max-width: 380px) {
+    h1.hero-headline { font-size: 30px; }
+    h2.section-headline { font-size: 28px; }
+    .comp-card-title { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     1. HERO
+══════════════════════════════════════════ -->
+<section id="hero">
+  <div class="container">
+    <nav>
+      <div class="logo">MarketMind</div>
+      <ul class="nav-links">
+        <li><a href="#">About</a></li>
+        <li><a href="#">Test</a></li>
+        <li><a href="#">Community</a></li>
+        <li><a href="#">FAQ</a></li>
+      </ul>
+      <a href="#" class="nav-cta">Start the Test</a>
+    </nav>
+
+    <div class="hero-inner">
+      <div class="hero-left">
+        <div class="hero-tag">
+          <span></span>
+          Quick 3-Min Assessment
+        </div>
+
+        <h1 class="hero-headline">
+          You follow price action.<br>But do you truly grasp<br>what drives it?
+        </h1>
+
+        <p class="hero-sub">
+          The majority of traders chase setups.<br>Almost none understand the forces behind them.
+        </p>
+
+        <ul class="hero-bullets">
+          <li>
+            <span class="bullet-check">
+              <svg viewBox="0 0 13 13" fill="none">
+                <path d="M2 6.5L5.5 10L11 3" stroke="#5846fb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            Quick 3-min knowledge check
+          </li>
+          <li>
+            <span class="bullet-check">
+              <svg viewBox="0 0 13 13" fill="none">
+                <path d="M2 6.5L5.5 10L11 3" stroke="#5846fb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            Grounded in professional market thinking
+          </li>
+          <li>
+            <span class="bullet-check">
+              <svg viewBox="0 0 13 13" fill="none">
+                <path d="M2 6.5L5.5 10L11 3" stroke="#5846fb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            Zero lagging tools, zero speculation
+          </li>
+        </ul>
+
+        <div class="hero-ctas">
+          <a href="#" class="btn-primary">
+            👉 Start the Market Knowledge Test
+          </a>
+          <span class="btn-secondary">See a 2-minute overview</span>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="quiz-card">
+          <div class="quiz-card-label">Question 1 of 5</div>
+          <p class="quiz-card-q">When price breaks a prior high and sharply reverses, this typically signals a…</p>
+          <div class="quiz-options">
+            <div class="quiz-opt">Confirmed breakout</div>
+            <div class="quiz-opt selected">Liquidity trap</div>
+            <div class="quiz-opt">Continuation of the trend</div>
+            <div class="quiz-opt">Irrelevant price fluctuation</div>
+          </div>
+          <div class="quiz-progress">
+            <div class="quiz-bar"><div class="quiz-bar-fill"></div></div>
+            <span class="quiz-step">1 / 5</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     2. QUICK CONTEXT
+══════════════════════════════════════════ -->
+<section id="quick-context">
+  <div class="container">
+    <span class="section-label">Background</span>
+    <h2 class="section-headline black">Need background<br>before you begin?</h2>
+    <p class="section-sub">This brief video explains the real mechanics behind price moves.</p>
+
+    <div class="video-placeholder">
+      <!-- decorative chart lines background -->
+      <svg class="chart-bg" viewBox="0 0 1232 200" preserveAspectRatio="none">
+        <polyline points="0,160 80,140 160,150 240,120 320,130 400,80 480,90 560,50 640,70 720,30 800,45 880,20 960,35 1040,15 1120,25 1232,10"
+          fill="none" stroke="#5846fb" stroke-width="2" opacity="0.5"/>
+      </svg>
+
+      <div class="play-btn">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+          <path d="M8 5L23 14L8 23V5Z" fill="white"/>
+        </svg>
+      </div>
+      <div class="video-label">▶ Play the overview</div>
+      <div class="video-duration">2 min · No registration needed</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     3. CORE INSIGHT
+══════════════════════════════════════════ -->
+<section id="core-insight">
+  <div class="container">
+    <div class="insight-header">
+      <h2 class="section-headline black centered">Most traders read charts.<br>Almost none read capital flow.</h2>
+    </div>
+
+    <div class="comparison-grid">
+      <!-- Left: Pattern-Based Thinking -->
+      <div class="comp-card dark">
+        <div class="comp-card-label">Pattern-Based Thinking</div>
+        <div class="comp-card-title">The typical<br>trader's lens</div>
+        <ul class="comp-list">
+          <li>
+            <span class="icon-x">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M2 2L10 10M10 2L2 10" stroke="#ff5050" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </span>
+            Price levels &amp; zones
+          </li>
+          <li>
+            <span class="icon-x">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M2 2L10 10M10 2L2 10" stroke="#ff5050" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </span>
+            Structure breaks
+          </li>
+          <li>
+            <span class="icon-x">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M2 2L10 10M10 2L2 10" stroke="#ff5050" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </span>
+            Trend following signals
+          </li>
+          <li>
+            <span class="icon-x">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M2 2L10 10M10 2L2 10" stroke="#ff5050" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </span>
+            Oscillator signals
+          </li>
+        </ul>
+      </div>
+
+      <!-- Right: Capital-Driven Thinking -->
+      <div class="comp-card accent">
+        <div class="comp-card-label">Capital-Driven Thinking</div>
+        <div class="comp-card-title">What actually<br>drives price</div>
+        <ul class="comp-list">
+          <li>
+            <span class="icon-check-sm">
+              <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+                <path d="M2 6.5L5.5 10L11 3" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            Consolidation &amp; loading
+          </li>
+          <li>
+            <span class="icon-check-sm">
+              <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+                <path d="M2 6.5L5.5 10L11 3" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            Order absorption zones
+          </li>
+          <li>
+            <span class="icon-check-sm">
+              <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+                <path d="M2 6.5L5.5 10L11 3" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            Stop-hunt sequences
+          </li>
+          <li>
+            <span class="icon-check-sm">
+              <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+                <path d="M2 6.5L5.5 10L11 3" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            Actual institutional flow
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="insight-micro">The gap isn't about software. It's about how you read what's happening.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     4. INTERACTIVE CTA BLOCK
+══════════════════════════════════════════ -->
+<div id="cta-block">
+  <div class="cta-inner">
+    <h2 class="section-headline white">Curious where you stand?</h2>
+    <p class="cta-support">Discover your true edge in reading price.</p>
+    <a href="#" class="btn-primary" style="font-size:20px;height:68px;padding:0 48px;">
+      Start the Market Structure Test
+    </a>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     5. COMMUNITY
+══════════════════════════════════════════ -->
+<section id="community">
+  <div class="container">
+    <h2 class="section-headline black">Want to grow alongside<br>a community?</h2>
+
+    <div class="community-cards">
+      <!-- Telegram -->
+      <div class="community-card">
+        <div class="community-icon tg">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <path d="M4 15.5C4 15.5 17.5 10 22 8.5C24 7.8 28 7 28 7C28 7 29.5 7 29 9C28.5 11 26 22 25 26C24.2 29 22 29.5 21 28.5C20 27.5 17 25.5 14.5 24C12 22.5 14.5 21 17 18.5C18 17.5 23 13 23 13C23 13 23.5 12.5 23 12.5C22.5 12.5 22 13 22 13L12 19.5C12 19.5 11 20 9.5 19.5C8 19 5.5 18 5.5 18C5.5 18 3.5 17 4 15.5Z" fill="white"/>
+          </svg>
+        </div>
+        <div>
+          <div class="community-card-title">Telegram community</div>
+          <div class="community-card-sub">Ongoing analysis &amp; market conversations</div>
+        </div>
+        <svg style="margin-left:auto;opacity:0.3" width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M5 12H19M13 6L19 12L13 18" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+
+      <!-- Discord -->
+      <div class="community-card">
+        <div class="community-icon dc">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <path d="M22.5 7C22.5 7 20 6 17 6C16.5 7 16 8 16 8C14.5 7.5 13 7.5 11.5 8C11.5 8 11 7 10.5 6C7.5 6 5 7 5 7C3 12 3 17 5 21C6.5 22 8.5 23 9.5 23L11 21C9.5 20.5 8.5 20 7.5 19C8 18.5 8.5 18.5 9 19C11 20 13 20.5 16 20.5C19 20.5 21 20 23 19C23.5 18.5 24 18.5 24.5 19C23.5 20 22.5 20.5 21 21L22.5 23C23.5 23 25.5 22 27 21C29 17 29 12 27 7C27 7 24.5 6 22.5 7ZM12.5 17.5C11.5 17.5 10.5 16.5 10.5 15.5C10.5 14.5 11.5 13.5 12.5 13.5C13.5 13.5 14.5 14.5 14.5 15.5C14.5 16.5 13.5 17.5 12.5 17.5ZM19.5 17.5C18.5 17.5 17.5 16.5 17.5 15.5C17.5 14.5 18.5 13.5 19.5 13.5C20.5 13.5 21.5 14.5 21.5 15.5C21.5 16.5 20.5 17.5 19.5 17.5Z" fill="white"/>
+          </svg>
+        </div>
+        <div>
+          <div class="community-card-title">Discord discussions</div>
+          <div class="community-card-sub">Live discussions &amp; instant answers</div>
+        </div>
+        <svg style="margin-left:auto;opacity:0.3" width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M5 12H19M13 6L19 12L13 18" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     6. ALTERNATIVE OFFER
+══════════════════════════════════════════ -->
+<div id="alt-offer">
+  <div class="alt-inner">
+    <div>
+      <span class="section-label" style="color:#5846fb;margin-bottom:24px;display:block;">No Cost</span>
+      <h2 class="section-headline white" style="font-size:72px;">Prefer to start<br>with a live session?</h2>
+      <p class="section-sub" style="color:rgba(255,255,255,0.6);margin-bottom:40px;">Attend a no-cost analysis session and observe how seasoned traders think.</p>
+
+      <ul class="alt-bullets">
+        <li>
+          <span class="bullet-check">
+            <svg viewBox="0 0 13 13" fill="none" width="13" height="13">
+              <path d="M2 6.5L5.5 10L11 3" stroke="#5846fb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          Full 60-min live walkthrough
+        </li>
+        <li>
+          <span class="bullet-check">
+            <svg viewBox="0 0 13 13" fill="none" width="13" height="13">
+              <path d="M2 6.5L5.5 10L11 3" stroke="#5846fb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          Actual chart case studies
+        </li>
+        <li>
+          <span class="bullet-check">
+            <svg viewBox="0 0 13 13" fill="none" width="13" height="13">
+              <path d="M2 6.5L5.5 10L11 3" stroke="#5846fb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          Clear language, no speculation
+        </li>
+      </ul>
+
+      <a href="#" class="btn-primary" style="font-size:20px;height:68px;padding:0 48px;">Claim your free seat</a>
+    </div>
+
+    <div class="alt-right">
+      <div class="alt-stat">
+        <div class="alt-stat-num">60 min</div>
+        <div class="alt-stat-label">Duration of live session</div>
+      </div>
+      <div class="alt-stat">
+        <div class="alt-stat-num">100%</div>
+        <div class="alt-stat-label">Completely free, no payment info</div>
+      </div>
+      <div class="alt-stat">
+        <div class="alt-stat-num">Real</div>
+        <div class="alt-stat-label">Live charts only, no textbook content</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     7. EDUCATIONAL VISUAL
+══════════════════════════════════════════ -->
+<section id="edu-visual">
+  <div class="container">
+    <h2 class="section-headline black">Would you catch this<br>pattern before the move?</h2>
+
+    <div class="chart-container" style="padding:0;overflow:hidden;">
+      <img src="image 143.png" alt="Market structure chart" style="width:100%;height:auto;display:block;border-radius:var(--radius-card);">
+    </div>
+
+    <div class="edu-steps">
+      <div class="edu-step">
+        <div class="step-num">1</div>
+        <div class="step-text">Spot consolidation</div>
+      </div>
+      <div class="edu-step">
+        <div class="step-num">2</div>
+        <div class="step-text">Recognize the stop-hunt</div>
+      </div>
+      <div class="edu-step">
+        <div class="step-num">3</div>
+        <div class="step-text">Read order absorption</div>
+      </div>
+      <div class="edu-step">
+        <div class="step-num">4</div>
+        <div class="step-text">Validate the trend change</div>
+      </div>
+    </div>
+
+    <div class="btn-center">
+      <a href="#" class="btn-primary" style="font-size:20px;height:68px;padding:0 48px;">
+        Check your knowledge
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     8. AUTHOR / CREDIBILITY
+══════════════════════════════════════════ -->
+<section id="author">
+  <div class="container">
+    <div class="author-grid">
+      <div class="author-left">
+        <div class="author-photo">
+          <!-- ЩОБ ВСТАВИТИ СВОЄ ФОТО: замінити src="my-photo.png" на шлях до файлу фото -->
+          <!-- Наприклад: src="photo.jpg" якщо фото лежить поряд з цим HTML файлом -->
+          <img src="my-photo.png" alt="Author photo"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+          <svg width="90" height="90" viewBox="0 0 90 90" fill="none" style="display:none">
+            <circle cx="45" cy="34" r="20" fill="#999"/>
+            <ellipse cx="45" cy="80" rx="32" ry="22" fill="#999"/>
+          </svg>
+        </div>
+        <div class="author-badge">
+          15+ years analyzing markets
+        </div>
+      </div>
+
+      <div class="author-right">
+        <h3 class="author-title">Grounded in practice,<br>not forecasts.</h3>
+        <p class="author-body">Developed through 15+ years in the markets. The focus is on where money actually flows, not where people think it will.</p>
+        <blockquote class="author-quote">
+          "I don't give signals. I share how to think about markets."
+        </blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     9. INDUSTRY PROOF
+══════════════════════════════════════════ -->
+<section id="industry">
+  <div class="container">
+    <h2 class="section-headline black centered">Acknowledged across the<br>international trading world</h2>
+
+    <div class="proof-cards">
+      <div class="proof-card">
+        <div class="proof-img">
+          <img src="1.png" alt="Dubai Traders Summit 2023" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div class="proof-label">
+          Dubai Traders Summit 2023
+          <div class="proof-micro">International Conference</div>
+        </div>
+      </div>
+
+      <div class="proof-card">
+        <div class="proof-img">
+          <img src="2.png" alt="Bloomberg Markets Feature" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div class="proof-label">
+          Bloomberg Markets Feature
+          <div class="proof-micro">Media Appearance</div>
+        </div>
+      </div>
+
+      <div class="proof-card">
+        <div class="proof-img">
+          <img src="3.png" alt="TradingView Partner 2022" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div class="proof-label">
+          TradingView Partner 2022
+          <div class="proof-micro">Official Partnership</div>
+        </div>
+      </div>
+
+      <div class="proof-card">
+        <div class="proof-img">
+          <img src="4.png" alt="Top Educator Award 2024" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div class="proof-label">
+          Top Educator Award 2024
+          <div class="proof-micro">Industry Recognition</div>
+        </div>
+      </div>
+    </div>
+
+    <p class="industry-caption">Contributing to the industry through talks, media, and published work.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     10. FINAL CTA
+══════════════════════════════════════════ -->
+<div id="final-cta">
+  <div class="final-inner">
+    <h2 class="section-headline white" style="font-size:80px;">Find out where your<br>market reading stands</h2>
+    <a href="#" class="btn-primary" style="font-size:20px;height:68px;padding:0 56px;">
+      Begin the Market Structure Test
+    </a>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     11. FOOTER
+══════════════════════════════════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-logo">MarketMind</div>
+
+    <div class="footer-links">
+      <a href="#" class="footer-pill">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <path d="M2 10.5C2 10.5 10 7 13.5 6C14.5 5.7 17 5.5 17 5.5C17 5.5 18 5.5 17.5 7C17 8.5 15 15 14.5 17C14 19 12.5 19.5 12 18.5C11.5 17.5 9.5 16.5 8 15.5C6.5 14.5 8 13.5 10 11.5C10.5 11 14 8.5 14 8.5C14 8.5 14.5 8 14 8C13.5 8 12.5 8.5 12.5 8.5L6.5 12.5C6.5 12.5 5.5 13 4.5 12.5C3.5 12 2 11.5 2 11.5C2 11.5 1 11 2 10.5Z" fill="white"/>
+        </svg>
+        Telegram
+      </a>
+      <a href="#" class="footer-pill">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <path d="M19 4H3C2.45 4 2 4.45 2 5V17C2 17.55 2.45 18 3 18H19C19.55 18 20 17.55 20 17V5C20 4.45 19.55 4 19 4ZM9 15V7L16 11L9 15Z" fill="white"/>
+        </svg>
+        YouTube
+      </a>
+      <a href="#" class="footer-pill">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <circle cx="11" cy="11" r="8" stroke="white" stroke-width="1.5"/>
+          <path d="M11 7V11L14 13" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        Live sessions
+      </a>
+    </div>
+
+    <div class="footer-divider"></div>
+
+    <!-- Legal block -->
+    <div class="footer-legal">
+      <div class="footer-disclosures">
+        <p><strong>Risk Disclosure:</strong> The information provided on this website is for educational and informational purposes only and should not be considered as investment advice, financial advice, or a recommendation to engage in any transactions. We do not provide trading signals and do not guarantee any profits. All content reflects the subjective opinions of the author and is intended to help develop market understanding and an analytical approach. Trading cryptocurrencies and other financial instruments involves a high level of risk and may result in partial or total loss of funds. Such activities may not be suitable for all users. Before making any financial decisions, you should carefully assess your own goals, level of experience, and risk tolerance, and seek independent financial advice if necessary. The website owners and authors are not responsible for any losses or consequences resulting from the use of the information provided. We do not provide investment, brokerage, or asset management services.</p>
+        <p><strong>Advertiser Disclosure:</strong> <span>Some links on this website are affiliate links. We may earn a commission if you interact with these services. This comes at no additional cost to you and does not influence our content.</span></p>
+        <p><strong>Editorial Guidelines:</strong> We follow principles of objectivity, independence, and transparency in all content we produce. Our materials are created for educational and informational purposes only and are not intended as financial advice.</p>
+        <p><strong>Methodology:</strong> Our information and reviews are based on publicly available data, independent market analysis, and the experience of our team. They are provided for informational purposes only.</p>
+      </div>
+
+      <div class="accordion-list">
+
+        <!-- Cookie Policy -->
+        <div class="accordion-item" id="acc-cookie">
+          <div class="accordion-header" onclick="toggleAccordion('acc-cookie')">
+            <div class="accordion-header-text">
+              <span class="accordion-title">Cookie Policy</span>
+              <span class="accordion-date">Last updated: March 2026</span>
+            </div>
+            <div class="accordion-chevron">
+              <svg viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1L5 5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+          <div class="accordion-body">
+            <p class="accordion-intro">This Cookie Policy explains how and why we use cookies and similar technologies on this website.</p>
+            <p class="section-title">1. What are cookies</p>
+            <p>Cookies are small text files stored on your device when you visit a website. They help ensure the site functions properly and improve the overall user experience.</p>
+            <p class="section-title">2. Types of cookies we use</p>
+            <p>We may use the following types of cookies:</p>
+            <ul>
+              <li><strong>Essential cookies</strong> — necessary for the proper functioning of the website and cannot be disabled.</li>
+              <li><strong>Analytics cookies</strong> — help us understand how users interact with the website (e.g. via Google Analytics).</li>
+              <li><strong>Functional cookies</strong> — allow the website to remember your preferences and settings.</li>
+              <li><strong>Marketing cookies</strong> — may be used to deliver relevant advertising and measure the effectiveness of our campaigns.</li>
+            </ul>
+            <p class="section-title">3. Third-party services</p>
+            <p>We may use third-party services such as Google Analytics, advertising networks, and partner platforms. These services may set their own cookies in accordance with their respective privacy policies.</p>
+            <p class="section-title">4. Managing cookies</p>
+            <p>You can control and manage cookies through your browser settings or via the cookie consent banner when you first visit the website. Please note that disabling cookies may affect the functionality of the site.</p>
+            <p class="section-title">5. User consent</p>
+            <p>By continuing to use this website, you agree to the use of cookies as described in this policy.</p>
+            <p class="section-title">6. Updates to this policy</p>
+            <p>We may update this Cookie Policy from time to time. The latest version will always be available on this page.</p>
+            <p class="section-title">7. Contact information</p>
+            <p>If you have any questions regarding the use of cookies, you can contact us using the contact details provided on the website. We do not collect or process sensitive financial information such as access to user accounts, passwords, or funds.</p>
+          </div>
+        </div>
+
+        <!-- Privacy Policy -->
+        <div class="accordion-item" id="acc-privacy">
+          <div class="accordion-header" onclick="toggleAccordion('acc-privacy')">
+            <div class="accordion-header-text">
+              <span class="accordion-title">Privacy Policy</span>
+              <span class="accordion-date">Last updated: March 2026</span>
+            </div>
+            <div class="accordion-chevron">
+              <svg viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1L5 5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+          <div class="accordion-body">
+            <p class="accordion-intro">This Privacy Policy explains what data we collect, how we use it, and how we protect it when you use this website.</p>
+            <p class="section-title">1. General Information</p>
+            <p>We respect your privacy and are committed to protecting your personal data. By using this website, you agree to the terms of this Privacy Policy.</p>
+            <p class="section-title">2. Information We Collect</p>
+            <p><strong>Personal Data:</strong> name (if provided), email address (for registration or subscriptions).</p>
+            <p><strong>Technical Data:</strong> IP address, device and browser type, information about your interaction with the website.</p>
+            <p><strong>Analytics Data:</strong> user behavior on the site, traffic sources, pages visited.</p>
+            <p class="section-title">3. How We Use Your Data</p>
+            <ul>
+              <li>to ensure proper website functionality</li>
+              <li>to improve user experience</li>
+              <li>to analyze and optimize content</li>
+              <li>to communicate with users (if necessary)</li>
+              <li>to maintain security</li>
+            </ul>
+            <p class="section-title">4. Cookies and Tracking Technologies</p>
+            <p>We use cookies and similar technologies to analyze website traffic, personalize content, and measure advertising performance. For more information, please refer to our Cookie Policy.</p>
+            <p class="section-title">5. Data Sharing</p>
+            <p>We may share data with analytics providers, advertising platforms, and partner services. We do not sell personal data to third parties.</p>
+            <p class="section-title">6. Third-Party Services</p>
+            <p>This website may contain links to third-party platforms. We do not control and are not responsible for their privacy practices.</p>
+            <p class="section-title">7. Data Security</p>
+            <p>We take reasonable measures to protect user data. However, we cannot guarantee absolute security of data transmitted over the internet.</p>
+            <p class="section-title">8. User Rights</p>
+            <p>You have the right to request access to, deletion of, or restriction of processing of your data. Contact us using the details on the website.</p>
+            <p class="section-title">9. Data Retention</p>
+            <p>We retain personal data only for as long as necessary to fulfill the purposes outlined in this Privacy Policy.</p>
+            <p class="section-title">10. Policy Updates</p>
+            <p>We may update this Privacy Policy from time to time. The latest version will always be available on this page.</p>
+            <p class="section-title">11. Contact Information</p>
+            <p>If you have any questions regarding this Privacy Policy, you can contact us using the contact details provided on the website.</p>
+          </div>
+        </div>
+
+        <!-- Terms of Use -->
+        <div class="accordion-item" id="acc-terms">
+          <div class="accordion-header" onclick="toggleAccordion('acc-terms')">
+            <div class="accordion-header-text">
+              <span class="accordion-title">Terms of Use</span>
+              <span class="accordion-date">Last updated: March 2026</span>
+            </div>
+            <div class="accordion-chevron">
+              <svg viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1L5 5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+          <div class="accordion-body">
+            <p class="accordion-intro">These Terms of Use govern your access to and use of this website. By using the site, you agree to these Terms.</p>
+            <p class="section-title">1. General Information</p>
+            <p>This website provides educational and informational content related to financial market analysis. By accessing the website, you acknowledge and agree to these Terms.</p>
+            <p class="section-title">2. Nature of Information</p>
+            <p>All information on this website is for educational purposes only, does not constitute investment or financial advice, and is not a recommendation to engage in transactions. We do not provide trading signals and do not guarantee profits.</p>
+            <p class="section-title">3. User Responsibility</p>
+            <p>All decisions are made solely by the user, who assumes full responsibility for their actions. We are not responsible for any losses resulting from the use of information on this website.</p>
+            <p class="section-title">4. Limitation of Liability</p>
+            <p>The website owners do not guarantee the accuracy or completeness of information, are not liable for direct or indirect losses, and are not responsible for the actions of third parties.</p>
+            <p class="section-title">5. Third-Party Services</p>
+            <p>This website may contain links to third-party services. By following such links, you leave this website and agree to the terms of the respective third-party service. We do not control and are not responsible for their content.</p>
+            <p class="section-title">6. Affiliate Disclosure</p>
+            <p>Some links may be affiliate links. We may receive compensation for interactions with these services. This does not affect the cost for the user.</p>
+            <p class="section-title">7. Intellectual Property</p>
+            <p>All content on this website is protected by intellectual property laws and may not be copied or distributed without permission.</p>
+            <p class="section-title">8. Restrictions of Use</p>
+            <p>You agree not to use the website for unlawful purposes, copy content without authorization, or interfere with the operation of the website.</p>
+            <p class="section-title">9. Changes to Terms</p>
+            <p>We reserve the right to modify these Terms at any time. The updated version will always be available on this page.</p>
+            <p class="section-title">10. Termination of Access</p>
+            <p>We may suspend or terminate access to the website without prior notice if these Terms are violated.</p>
+            <p class="section-title">11. Governing Law</p>
+            <p>These Terms are governed by applicable laws.</p>
+            <p class="section-title">12. Contact Information</p>
+            <p>If you have any questions regarding these Terms, you can contact us using the contact details provided on the website.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="footer-divider"></div>
+
+    <div class="footer-bottom">
+      <p class="footer-disclaimer">
+        All content is provided for educational purposes only and should not be treated as financial advice. Trading in financial markets carries significant risk. Prior results are not a guarantee of future performance. Always do your own due diligence before making any trading decisions.
+      </p>
+      <div class="footer-copyright">© 2025 MarketMind. All rights reserved.</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function toggleAccordion(id) {
+    var item = document.getElementById(id);
+    item.classList.toggle('open');
+  }
+</script>
+</body>
+</html>
